@@ -6,20 +6,42 @@ function index(req,res){
     res.json(posts);
 }
 
-// show
-function show(req,res){
+// mostra un singolo post
+function show(req, res) {
     const id = parseInt(req.params.id);
+    const post = posts.find(post => post.id === id);
 
-    const post = posts.find((post) => {
-        return post.id == id;
-    })
+    if (!post) {
+        res.status(404).json({
+            error: "Not Found",
+            message: "Post non trovato"
+        });
+        return;
+    }
+
     res.json(post);
 }
 
 // store
 function store(req, res) {
-    console.log('Dati ricevuti:', req.body);
-    res.send('Inserimento di un nuovo post');
+    // Definiamo un nuovo ID per il post
+    const newId = posts.length > 0 ? posts[posts.length - 1].id + 1 : 1;
+
+    // Creiamo un nuovo oggetto post utilizzando i dati inviati nella richiesta (req.body)
+    const newPost = {
+        id: newId,
+        title: req.body.title,
+        content: req.body.content,
+        image: req.body.image,
+        tags: req.body.tags
+    };
+
+    // Aggiungiamo il nuovo post all'array 'posts'
+    posts.push(newPost);
+    console.log('Post aggiunto:', newPost);
+
+    // Rispondiamo con il codice di stato 201 (Created) e il nuovo post creato
+    res.status(201).json(newPost);
 }
 
 // update
