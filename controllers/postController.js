@@ -27,6 +27,8 @@ function modify (req,res){
 }
 
 // destroy
-function modestroydify (req,res){
+function destroy (req,res){
     res.send(`cancellazione del post con ID ${req.params.id}`);
 }
+
+module.exports = { index, show, store, update, modify, destroy}
