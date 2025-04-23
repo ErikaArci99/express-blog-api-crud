@@ -1,4 +1,4 @@
-const posts = require('.../data/posts.js');
+const posts = require('../data/posts.js');
 
 // index
 
@@ -13,6 +13,7 @@ function show(req,res){
     const post = posts.find((post) => {
         return post.id == id;
     })
+    res.json(post);
 }
 
 // store
@@ -32,7 +33,18 @@ function modify (req,res){
 
 // destroy
 function destroy (req,res){
-    res.send(`cancellazione del post con ID ${req.params.id}`);
+    const id = parseInt(req.params.id);
+
+    const post = posts.find((post) => {
+        return post.id == id;
+    })
+    
+    // cancello il post
+    post.splice(post.indexOf(post), 1);
+
+    // restituisco il codice di stato 204
+    res.sendStatus(204);
+
 }
 
 module.exports = { index, show, store, update, modify, destroy}
