@@ -3,35 +3,26 @@ const router = express.Router();
 
 // creo le nuove rotte
 
+// importo il controller
+const postController = require('../controllers/postController.js')
+
 // index
-router.get('/', (req, res) => {
-    res.send('Lista dei post');
-});
+router.get('/', postController.index);
 
 // show
-router.get('/:id', (req, res) => {
-    res.send('Dettagli del post ' + req.params.id);
-});
+router.get('/:id', postController.show);
 
 // store
-router.post('/', (req, res) => {
-    res.send('Creazione nuovo post');
-});
+router.post('/', postController.store);
 
 // update
-router.put('/:id', (req, res) => {
-    res.send('Modifica integrale del post ' + req.params.id);
-});
+router.put('/:id', postController.update);
 
 // modify
-router.patch('/:id', (req, res) => {
-    res.send('Modifica parziale del post ' + req.params.id);
-});
+router.patch('/:id', postController.modify);
 
 // destroy
-router.delete('/:id', (req, res) => {
-    res.send('Eliminazione del post ' + req.params.id);
-});
+router.delete('/:id', postController.destroy);
 
 //  esporto le rotte in app.js
 module.exports = router;
