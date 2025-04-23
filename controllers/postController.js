@@ -8,7 +8,11 @@ function index(req,res){
 
 // show
 function show(req,res){
-    res.send(`post con ID ${req.params.id}`);
+    const id = parseInt(req.params.id);
+
+    const post = posts.find((post) => {
+        return post.id == id;
+    })
 }
 
 // store
