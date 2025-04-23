@@ -6,6 +6,9 @@ const app = express();
 // definiamo la porta 
 const port = 3000;
 
+// Body parser per JSON
+app.use(express.json());
+
 // serve file statici dalla cartella "public"
 app.use(express.static('public'));
 
