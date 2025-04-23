@@ -20,3 +20,13 @@ function store(req,res){
 function update (req,res){
     res.send(`modifica totale del post con ID ${req.params.id}`);
 }
+
+// modify
+function modify (req,res){
+    res.send(`modifica parziale del post con ID ${req.params.id}`);
+}
+
+// destroy
+function modestroydify (req,res){
+    res.send(`cancellazione del post con ID ${req.params.id}`);
+}
