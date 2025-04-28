@@ -19,6 +19,7 @@ app.get('/', (req, res) => {
 
 // importo le funzioni middleware
 const errorsHandler = require('./middlewares/errorsHandler.js');
+const notFound = require('./middlewares/notFound.js');
 
 // rotta bacheca
 app.get('/bacheca', (req, res) => {
@@ -76,6 +77,7 @@ app.use("/posts", postRouter);
 
 // registro funzioni middleware
 app.use(errorsHandler);
+app.use(notFound);
 
 // inseriamo il metodo che lascia in ascolto il server
 app.listen(port, () => {
